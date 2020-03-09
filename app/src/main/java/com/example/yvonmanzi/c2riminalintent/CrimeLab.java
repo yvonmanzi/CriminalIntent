@@ -10,7 +10,7 @@ class CrimeLab {
     private static CrimeLab sCrimeLab;
     List<Crime> mCrimes;
 
-    public CrimeLab getInstance(Context context) {
+    public static CrimeLab getInstance(Context context) {
         if(sCrimeLab == null){
             sCrimeLab = new CrimeLab(context);
         }
