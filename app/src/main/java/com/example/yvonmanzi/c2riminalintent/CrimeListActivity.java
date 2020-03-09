@@ -1,12 +1,12 @@
 package com.example.yvonmanzi.c2riminalintent;
 
-
 import android.support.v4.app.Fragment;
 
-public class MainActivity extends SingleFragmentActivity {
+public class CrimeListActivity extends SingleFragmentActivity {
 
-   @Override
+    @Override
     protected Fragment createFragment(){
-       return new CrimeFragment();
-   }
+        return new CrimeListFragment();
+    }
+
 }
