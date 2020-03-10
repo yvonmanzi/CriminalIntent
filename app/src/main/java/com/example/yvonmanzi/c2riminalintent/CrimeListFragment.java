@@ -1,5 +1,6 @@
 package com.example.yvonmanzi.c2riminalintent;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,12 @@ import java.util.List;
 
 public class CrimeListFragment extends Fragment{
     private RecyclerView mCrimeRecyclerView;
+
+    @Nullable
+    @Override
+    public Context getContext() {
+        return getActivity();
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
