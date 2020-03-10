@@ -8,13 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.Date;
 import java.util.List;
 
 
 public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder> {
     private List<Crime> mCrimes;
     LayoutInflater mInflater;
+
     public CrimeAdapter(Context context, List<Crime> crimes) {
         this.mCrimes = crimes;
         mInflater = LayoutInflater.from(context);
@@ -49,7 +49,8 @@ public class CrimeAdapter extends RecyclerView.Adapter<CrimeAdapter.CrimeHolder>
             mTitleTextView = itemView.findViewById(R.id.crime_title);
             mDateTextView = itemView.findViewById(R.id.crime_date);
         }
-        public void bind(Crime crime){
+
+        public void bind(Crime crime) {
             mTitleTextView.setText(crime.getTitle());
             mDateTextView.setText(crime.getDate().toString());
         }
