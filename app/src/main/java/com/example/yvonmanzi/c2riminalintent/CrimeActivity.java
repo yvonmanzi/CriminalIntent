@@ -9,16 +9,12 @@ import java.util.UUID;
 
 public class CrimeActivity extends SingleFragmentActivity {
 
-    public static final String EXTRA_CRIME_ID = "package com.example.yvonmanzi.c2riminalintent.EXTRA.crime_id";
 
     @Override
     protected Fragment createFragment(){
-       return new CrimeFragment();
+
+       return CrimeFragment.newInstance(crimeId);
    }
-   public static Intent newIntent(Context packageContext, UUID crimeId){
-       Intent intent = new Intent(packageContext, CrimeActivity.class);
-       intent.putExtra(EXTRA_CRIME_ID, crimeId);
-       return intent;
-   }
+
 
 }

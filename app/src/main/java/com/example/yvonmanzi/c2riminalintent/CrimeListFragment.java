@@ -14,8 +14,9 @@ import android.view.ViewGroup;
 import java.util.List;
 
 
-public class CrimeListFragment extends Fragment{
+public class CrimeListFragment extends Fragment {
     private RecyclerView mCrimeRecyclerView;
+    private CrimeAdapter mAdapter;
 
     @Nullable
     @Override
@@ -36,17 +37,32 @@ public class CrimeListFragment extends Fragment{
 
         //get a handle to rv
         mCrimeRecyclerView = view.findViewById(R.id.crime_recycler_view);
+        updateUI();
+
+
+        return view;
+    }
+
+    private void updateUI() {
 
         //set an adapter to the rv
         CrimeLab crimeLab = CrimeLab.getInstance(getActivity());
         List<Crime> crimes = crimeLab.getCrimes();
-        CrimeAdapter adapter = new CrimeAdapter(getActivity(), crimes);
-        mCrimeRecyclerView.setAdapter(adapter);
+        //mCrimeRecyclerView.setAdapter(adapter);
+        //first check if the adapter aint already set.
+        if(mAdapter == null){
+            mAdapter = new CrimeAdapter(getActivity(), crimes);
+            mCrimeRecyclerView.setAdapter(mAdapter);
+        }
+        else mAdapter.notifyDataSetChanged();
 
         //set default LManager
         mCrimeRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-        return view;
+    }
+    @Override
+    public void onResume(){
+        super.onResume();
+        updateUI();
     }
 }
 

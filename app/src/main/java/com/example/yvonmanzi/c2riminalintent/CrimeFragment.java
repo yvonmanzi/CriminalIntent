@@ -18,6 +18,7 @@ import android.widget.EditText;
 import java.util.UUID;
 
 public class CrimeFragment extends Fragment {
+    private static final String ARG_CRIME_ID = "crime_id";
     private Crime mCrime;
     private EditText mTitleField;
     private Button mDateButton;
@@ -27,8 +28,17 @@ public class CrimeFragment extends Fragment {
     //they have to be public since they'll be called by their hosts"
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        /* this is simpler and cleaner, but our fragment is no longer
+        * re-usable. The reason is the CrimeActivity.EXTRA_CRIME_ID thing
+        * this fragment will always expect an activity that defines an exta named that.
+        * */
+        //UUID crimeId = (UUID) getActivity().getIntent().getSerializableExtra(CrimeActivity.EXTRA_CRIME_ID);
+        //mCrime = CrimeLab.getInstance(getActivity()).getCrime(crimeId);
+
+        /*lets now use fragment args to keep our framgments independ*/
+        UUID crimeId = (UUID) getArguments().getSerializable(ARG_CRIME_ID);
         mCrime = CrimeLab.getInstance(getActivity()).getCrime(crimeId);
+
     }
 
     @Nullable
@@ -82,5 +92,13 @@ public class CrimeFragment extends Fragment {
             }
         });
         return v;
+    }
+    public static CrimeFragment newInstance(UUID crimeId){
+        Bundle args = new Bundle();
+        args.putSerializable(ARG_CRIME_ID, crimeId);
+
+        CrimeFragment fragment = new CrimeFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }
