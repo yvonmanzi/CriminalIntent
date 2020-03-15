@@ -10,8 +10,7 @@ public class Crime {
     private boolean mSolved;
 
     public Crime() {
-        mId = UUID.randomUUID();
-        mDate = new Date();
+        this(UUID.randomUUID());
     }
 
     public String getTitle() {
@@ -40,5 +39,9 @@ public class Crime {
 
     public void setSolved(boolean solved) {
         mSolved = solved;
+    }
+    public Crime(UUID id){
+        mId = id;
+        mDate = new Date();
     }
 }
